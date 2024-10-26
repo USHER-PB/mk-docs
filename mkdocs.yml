@@ -11,7 +11,7 @@ theme:
 nav:
   - Home: index.md
   - About: about.md
-  -mark: mark.md
+  - mark: mark.md
 
 # Extra settings
 markdown_extensions:
