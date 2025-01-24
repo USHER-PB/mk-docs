@@ -15,5 +15,4 @@ FROM nginx:alpine
 
 COPY --from=builder /app/site /usr/share/nginx/html
 
-#thi is not possible 
-                      
+#thi is not possible #and i made an error                      
