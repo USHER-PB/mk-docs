@@ -1,30 +1,30 @@
-# comment 
-name: mkdocs build and deploy
-on:
-  push:
-    branches:
-    - master
+  name: automate build and deploy
+  on:
+     push:
+       branches:
+       - master
 
-jobs:
-  build:
-   runs-on: ubuntu 22.04
-   permissions:
-        packages: write
-   
-steps: 
-    -name: checkout code 
-     uses: actions/checkout@v3
-    
-    -name: login to container registry 
-    -uses: docker/login-action@v2
-     with:
-       registry: ghcr.io
-       username: ${{ github.actor }}
-       password: ${{ secret.GITHUB_TOKENS}}
-       
-    -name: BUild Project
-     uses: docker/build-push-action@v4
-     with:
-       tag: |
-        ghrc.io/${{ github.repository }}:latest
-        ghrc.io/${{ github.repository }}:${{ github.run_number }}
+  jobs:
+    build:
+       runs-on: ubuntu-22.04
+       permissions:
+         packages: write
+
+       steps:
+         # Checkout the repository code
+         - name: Checkout code
+           uses: actions/checkout@v3
+
+         - name: Login to Container Registry
+           uses: docker/login-action@v2
+           with: 
+             registry: ghcr.io
+             username: ${{ github.actor }}
+             password: ${{ secrets.GITHUB_TOKEN }}
+
+         - name: Build Project
+           uses: docker/build-push-action@v4
+           with:
+             tag: |
+               ghcr.io/${{ github.repository }}:latest
+               ghcr.io/${{ github.repository }}:${{ github.run_number }}
