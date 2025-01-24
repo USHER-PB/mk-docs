@@ -15,5 +15,5 @@ FROM nginx:alpine
 
 COPY --from=builder /app/site /usr/share/nginx/html
 
-#this is not normal
+
                       
